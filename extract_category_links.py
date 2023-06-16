@@ -95,7 +95,7 @@ class Task(BaseTask):
             for next_page in range(2, page_count + 1):
                 put_links()
                 driver.short_random_sleep()
-                driver.get_by_current_page_referrer(f"{self.product_url}?order=g2_score&page={next_page}#product-list" )
+                driver.get_by_current_page_referrer(f"{product_url}?order=g2_score&page={next_page}#product-list" )
             put_links()
             print(links)
         
