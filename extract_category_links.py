@@ -12,7 +12,7 @@ class Task(BaseTask):
 
         def get_leaf_links(div):
             if(div.find_all("div", class_ = 'ml-2') == []):
-                return [div.select_one('a[class$="link"]').href]
+                return [div.select_one('a[class$="link"]')['href']]
 
             leaf_links = []
 
