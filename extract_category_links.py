@@ -22,11 +22,10 @@ class Task(BaseTask):
             driver.get_element_or_none_by_selector('div.newspaper-columns', Wait.VERY_LONG * 4)
             html = htmltosoup(driver.page_source)
             category_list = html.find_all("div", class_ = 'newspaper-columns__list-item pb-1')
-            print(category_list)
 
-            # for div in category_list:
-            #     h2_name = div.select_one("h2").text
-            #     print(h2_name)
+            for div in category_list:
+                h2_name = div.select_one("h2").text
+                print(h2_name)
 
             return "asdf"
 
