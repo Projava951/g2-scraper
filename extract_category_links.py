@@ -7,6 +7,7 @@ from urllib.parse import urlparse, parse_qs
 
 class Task(BaseTask):
     browser_config = BrowserConfig(use_undetected_driver=True, is_eager=True)
+    input_category = ""
     def run(self, driver):
         links = []
 
@@ -42,6 +43,7 @@ class Task(BaseTask):
                 is_exist = False
 
                 for input_category in input_categories:
+                    self.input_category = input_category
                     if (input_category == h2_name):
                         is_exist = True
                         break
@@ -82,6 +84,20 @@ class Task(BaseTask):
             
             return result
 
+        def get_company_data(company_url):
+            driver.organic_get(company_url)
+            if driver.is_bot_detected():
+              driver.wait_for_enter("Bot has been detected. Solve it to continue.")
+            else: 
+                print("Not Detected")
+
+            driver.get_element_or_none_by_selector('h1.l2.pb-half.inline-block', Wait.VERY_LONG * 4)
+            html = htmltosoup(driver.page_source)
+
+            input_category = self.input_category
+            ol_ele = html.select_one('ol[id$="breadcrumbs"]')
+            li_eles = ol_ele.find_all("li", itemprop = 'itemListElement')
+
         input_categories = Output.read_pending()
 
         category_links = get_category_links(input_categories)
@@ -97,7 +113,9 @@ class Task(BaseTask):
                 driver.short_random_sleep()
                 driver.get_by_current_page_referrer(f"{product_url}?order=g2_score&page={next_page}#product-list" )
             put_links()
-            print(links)
+
+        for link in links:
+            data = get_company_data(link)
         
 if __name__ == '__main__':
     Task().begin_task()
