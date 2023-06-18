@@ -119,8 +119,31 @@ class Task(BaseTask):
                 twitter_profile = ""
                 twitter_follow_count = ""
 
-            print(twitter_profile)
-            print(twitter_follow_count)
+            ul_high_rated_features = html.find_all("ul", class_="list--chevron")[0]
+            if ul_high_rated_features == None:
+                high_rated_features_1 = ""
+                high_rated_features_2 = ""
+                high_rated_features_3 = ""
+            else:
+                li_high_rated_features = ul_high_rated_features.find_all("li", class_="fw-semibold")
+                try: 
+                    high_rated_features_1 = li_high_rated_features[0].text.split(" - ")[0]
+                except AttributeError:
+                    high_rated_features_1 = ""
+
+                try: 
+                    high_rated_features_2 = li_high_rated_features[0].text.split(" - ")[1]
+                except AttributeError:
+                    high_rated_features_2 = ""
+
+                try: 
+                    high_rated_features_3 = li_high_rated_features[0].text.split(" - ")[2]
+                except AttributeError:
+                    high_rated_features_3 = ""
+
+            print(high_rated_features_1)
+            print(high_rated_features_2)
+            print(high_rated_features_3)
 
             return li_eles
 
