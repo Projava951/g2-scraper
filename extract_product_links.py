@@ -166,6 +166,9 @@ class Task(BaseTask):
             features_h3s = features_summary_div.find_all("h3", class_="14")
             features_uls = features_summary_div.find_all("ul", class_="list--checked")
 
+            print(features_h3s)
+            print(features_uls)
+
             try: 
                 feature_1 = features_h3s[0].text + " > " + features_uls[0].find_all("li")[0].text
             except AttributeError:
