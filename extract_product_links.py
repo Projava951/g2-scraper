@@ -47,12 +47,15 @@ class Task(BaseTask):
             details_values = []
             
             for p in details_list:
-                
+                p_div = p
                 p.find("div", class_ = 'fw-semibold').decompose()
                 link = p.find("a", class_ = 'link')
             
                 if link is not None:
-                    p = link['href']
+                    if link.text == "www.linkedin.com":
+                        p = link['href'] + "||" + p_div.text
+                    else:
+                        p = link['href']
                 else:
                     data = str(p)
                     
@@ -82,10 +85,19 @@ class Task(BaseTask):
                 rating = ""
 
             vendor_name = details["Seller"]
+            if "LinkedIn Page" in details:
+                if len(details["LinkedIn Page"].split("||")) > 0:
+                    linkedin_profile = details["LinkedIn Page"].split("||")[0]
+                    linkedin_follow_count = details["LinkedIn Page"].split("||")[1].split(" ")[0]
+                else:
+                    linkedin_profile = details["LinkedIn Page"].split("||")[0]
+                    linkedin_follow_count = ""
+            else:
+                linkedin_profile = ""
+                linkedin_follow_count = ""
 
-
-            print(vendor_name)
-            print(details)
+            print(linkedin_profile)
+            print(linkedin_follow_count)
 
             return li_eles
 
