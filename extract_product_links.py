@@ -132,12 +132,12 @@ class Task(BaseTask):
                     high_rated_features_1 = ""
 
                 try: 
-                    high_rated_features_2 = li_high_rated_features[0].text.split(" - ")[1]
+                    high_rated_features_2 = li_high_rated_features[1].text.split(" - ")[0]
                 except AttributeError:
                     high_rated_features_2 = ""
 
                 try: 
-                    high_rated_features_3 = li_high_rated_features[0].text.split(" - ")[2]
+                    high_rated_features_3 = li_high_rated_features[2].text.split(" - ")[0]
                 except AttributeError:
                     high_rated_features_3 = ""
 
