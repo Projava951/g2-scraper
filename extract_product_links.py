@@ -88,7 +88,7 @@ class Task(BaseTask):
             if "LinkedIn Page" in details:
                 if len(details["LinkedIn Page"].split("||")) > 0:
                     linkedin_profile = details["LinkedIn Page"].split("||")[0]
-                    linkedin_follow_count = details["LinkedIn Page"].split("||")[1].split(" ")[0]
+                    linkedin_follow_count = details["LinkedIn Page"].split("||")[1].split(" ")[0].split(".com")[1]
                 else:
                     linkedin_profile = details["LinkedIn Page"].split("||")[0]
                     linkedin_follow_count = ""
