@@ -163,7 +163,7 @@ class Task(BaseTask):
             html = htmltosoup(driver.page_source)
 
             features_summary_div = html.select_one('div[class$="paper paper--box"]')
-            features_h3s = features_summary_div.find_all("h3", class_="14")
+            features_h3s = features_summary_div.find_all("h3")
             features_uls = features_summary_div.find_all("ul", class_="list--checked")
 
             print(features_h3s)
