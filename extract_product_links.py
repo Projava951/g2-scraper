@@ -65,12 +65,11 @@ class Task(BaseTask):
 
             details = dict(zip(details_titles, details_values))
 
-            print(details)
+            print(title)
 
             return li_eles
 
         data = get_company_data("https://www.g2.com/products/consensus/reviews")
-        print(data)
         
 if __name__ == '__main__':
     Task().begin_task()
