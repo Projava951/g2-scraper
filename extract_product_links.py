@@ -152,9 +152,63 @@ class Task(BaseTask):
                 quality_of_support = user_rating_div_children[1].text
                 ease_of_setup = user_rating_div_children[2].text
 
-            print(ease_of_use)
-            print(quality_of_support)
-            print(ease_of_setup)
+            features_url = company_url.replace("/reviews", "/features")
+            driver.organic_get(features_url)
+            if driver.is_bot_detected():
+              driver.wait_for_enter("Bot has been detected. Solve it to continue.")
+            else: 
+                print("Not Detected")
+
+            driver.get_element_or_none_by_selector('h1.l2.pb-half.inline-block', Wait.VERY_LONG * 4)
+            html = htmltosoup(driver.page_source)
+
+            features_summary_div = html.select_one('div[class$="paper paper--box"]')
+            features_h3s = features_summary_div.find_all("h3", class_="14")
+            features_uls = features_summary_div.find_all("ul", class_="list--checked")
+
+            try: 
+                feature_1 = features_h3s[0].text + " > " + features_uls[0].find_all("li")[0].text
+            except AttributeError:
+                feature_1 = ""
+
+            try: 
+                feature_2 = features_h3s[1].text + " > " + features_uls[1].find_all("li")[0].text
+            except AttributeError:
+                feature_2 = ""
+
+            try: 
+                feature_3 = features_h3s[2].text + " > " + features_uls[2].find_all("li")[0].text
+            except AttributeError:
+                feature_3 = ""
+
+            try: 
+                feature_4 = features_h3s[3].text + " > " + features_uls[3].find_all("li")[0].text
+            except AttributeError:
+                feature_4 = ""
+
+            try: 
+                feature_5 = features_h3s[4].text + " > " + features_uls[4].find_all("li")[0].text
+            except AttributeError:
+                feature_5 = ""
+
+            try: 
+                feature_6 = features_h3s[5].text + " > " + features_uls[5].find_all("li")[0].text
+            except AttributeError:
+                feature_6 = ""
+
+            try: 
+                feature_7 = features_h3s[6].text + " > " + features_uls[6].find_all("li")[0].text
+            except AttributeError:
+                feature_7 = ""
+
+
+            print(feature_1)
+            print(feature_2)
+            print(feature_3)
+            print(feature_4)
+            print(feature_5)
+            print(feature_6)
+            print(feature_7)
 
             return li_eles
 
