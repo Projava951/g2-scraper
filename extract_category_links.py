@@ -63,7 +63,7 @@ class Task(BaseTask):
                 page_number = query_params.get('page', [])[0]
             except AttributeError:
                 page_number = "1"
-                
+
             return int(page_number)
 
         def put_links():
@@ -189,13 +189,13 @@ class Task(BaseTask):
                 twitter_profile = ""
                 twitter_follow_count = ""
 
-            ul_high_rated_features = html.find_all("ul", class_="list--chevron")[0]
-            if ul_high_rated_features == None:
+            ul_high_rated_features = html.find_all("ul", class_="list--chevron")
+            if ul_high_rated_features == []:
                 high_rated_features_1 = ""
                 high_rated_features_2 = ""
                 high_rated_features_3 = ""
             else:
-                li_high_rated_features = ul_high_rated_features.find_all("li", class_="fw-semibold")
+                li_high_rated_features = ul_high_rated_features[0].find_all("li", class_="fw-semibold")
                 try: 
                     high_rated_features_1 = li_high_rated_features[0].text.split(" - ")[0]
                 except AttributeError:
