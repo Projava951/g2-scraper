@@ -159,7 +159,7 @@ class Task(BaseTask):
             else: 
                 print("Not Detected")
 
-            driver.get_element_or_none_by_selector('h1.l2.pb-half.inline-block', Wait.VERY_LONG * 4)
+            driver.get_element_or_none_by_selector('h1.l2.pb-half', Wait.VERY_LONG * 4)
             html = htmltosoup(driver.page_source)
 
             features_summary_div = html.select_one('div[class$="paper paper--box"]')
