@@ -198,17 +198,17 @@ class Task(BaseTask):
                 li_high_rated_features = ul_high_rated_features[0].find_all("li", class_="fw-semibold")
                 try: 
                     high_rated_features_1 = li_high_rated_features[0].text.split(" - ")[0]
-                except AttributeError:
+                except IndexError:
                     high_rated_features_1 = ""
 
                 try: 
                     high_rated_features_2 = li_high_rated_features[1].text.split(" - ")[0]
-                except AttributeError:
+                except IndexError:
                     high_rated_features_2 = ""
 
                 try: 
                     high_rated_features_3 = li_high_rated_features[2].text.split(" - ")[0]
-                except AttributeError:
+                except IndexError:
                     high_rated_features_3 = ""
 
             user_rating_div = html.select_one('div[data-equalizer$="measure-title"]')
