@@ -166,56 +166,76 @@ class Task(BaseTask):
             features_h3s = features_summary_div.find_all("h3")
             features_uls = features_summary_div.find_all("ul", class_="list--checked")
 
-            print(features_h3s)
-            print(features_uls)
-
             try: 
                 feature_1 = features_h3s[0].text + " > " + features_uls[0].find_all("li")[0].text
-            except AttributeError:
+            except IndexError:
                 feature_1 = ""
 
             try: 
                 feature_2 = features_h3s[1].text + " > " + features_uls[1].find_all("li")[0].text
-            except AttributeError:
+            except IndexError:
                 feature_2 = ""
 
             try: 
                 feature_3 = features_h3s[2].text + " > " + features_uls[2].find_all("li")[0].text
-            except AttributeError:
+            except IndexError:
                 feature_3 = ""
 
             try: 
                 feature_4 = features_h3s[3].text + " > " + features_uls[3].find_all("li")[0].text
-            except AttributeError:
+            except IndexError:
                 feature_4 = ""
 
             try: 
                 feature_5 = features_h3s[4].text + " > " + features_uls[4].find_all("li")[0].text
-            except AttributeError:
+            except IndexError:
                 feature_5 = ""
 
             try: 
                 feature_6 = features_h3s[5].text + " > " + features_uls[5].find_all("li")[0].text
-            except AttributeError:
+            except IndexError:
                 feature_6 = ""
 
             try: 
                 feature_7 = features_h3s[6].text + " > " + features_uls[6].find_all("li")[0].text
-            except AttributeError:
+            except IndexError:
                 feature_7 = ""
 
+            details = {
+                'Input Category 1': input_category,
+                'All categories': all_categories,
+                'Company link': company_link,
+                'Title': title,
+                'Website': website,
+                'Nr of ratings': rate_count,
+                'Rating': rating,
+                'Vendor name': vendor_name,
+                'Linkedin Nr of employees': linkedin_follow_count,
+                'Linkedin profile': linkedin_profile,
+                'HQ location': hq_location,
+                'Twitter profile': twitter_profile,
+                'Twitter followers': twitter_follow_count,
+                'Highest rated features 1': high_rated_features_1,
+                'Highest rated features 2': high_rated_features_2,
+                'Highest rated features 3': high_rated_features_3,
+                'Ease of use': ease_of_use,
+                'Quality of support': quality_of_support,
+                'Ease of setup': ease_of_setup,
+                'Features 1': feature_1,
+                'Features 2': feature_2,
+                'Features 3': feature_3,
+                'Features 4': feature_4,
+                'Features 5': feature_5,
+                'Features 6': feature_6,
+                'Features 7': feature_7
+            }
 
-            print(feature_1)
-            print(feature_2)
-            print(feature_3)
-            print(feature_4)
-            print(feature_5)
-            print(feature_6)
-            print(feature_7)
-
-            return li_eles
+            return details
 
         data = get_company_data("https://www.g2.com/products/consensus/reviews")
+        result = []
+        result.append(data)
+        Output.write_csv(result, "finished.csv")
         
 if __name__ == '__main__':
     Task().begin_task()
