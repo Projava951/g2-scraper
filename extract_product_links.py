@@ -65,7 +65,25 @@ class Task(BaseTask):
 
             details = dict(zip(details_titles, details_values))
 
-            print(title)
+            website = details["Website"]
+
+            review_div = html.select_one('div[id$="review"]')
+            rate_count_h3 = review_div.find_all("h3")[0]
+
+            try: 
+                rate_count = rate_count_h3.text.split(" ")[0]
+            except AttributeError:
+                rate_count = ""
+
+            rating_span = review_div.find_all("span", class_="fw-semibold")        
+            try: 
+                rating = rate_count_h3.text.strip()
+            except AttributeError:
+                rating = ""
+
+            print(website)
+            print(rate_count)
+            print(rating)
 
             return li_eles
 
