@@ -68,7 +68,10 @@ class Task(BaseTask):
 
             details = dict(zip(details_titles, details_values))
 
-            website = details["Website"]
+            if "Website" in details:
+                website = details["Website"]
+            else:
+                website = ""
 
             review_div = html.select_one('div[id$="reviews"]')
             rate_count_h3 = review_div.find_all("h3")[0]
@@ -84,7 +87,11 @@ class Task(BaseTask):
             except AttributeError:
                 rating = ""
 
-            vendor_name = details["Seller"]
+            if "Seller" in details:
+                vendor_name = details["Seller"]
+            else:
+                vendor_name = ""
+            
             if "LinkedIn Page" in details:
                 if len(details["LinkedIn Page"].split("||")) > 0:
                     linkedin_profile = details["LinkedIn Page"].split("||")[0]
@@ -96,8 +103,24 @@ class Task(BaseTask):
                 linkedin_profile = ""
                 linkedin_follow_count = ""
 
-            print(linkedin_profile)
-            print(linkedin_follow_count)
+            if "HQ Location" in details:
+                hq_location = details["HQ Location"]
+            else:
+                hq_location = ""
+
+            if "Twitter" in details:
+                if len(details["Twitter"].split(" ")) > 0:
+                    twitter_profile = details["Twitter"].split(" ")[0]
+                    twitter_follow_count = details["Twitter"].split(" ")[1]
+                else:
+                    twitter_profile = details["Twitter"].split(" ")[0]
+                    twitter_follow_count = ""
+            else:
+                twitter_profile = ""
+                twitter_follow_count = ""
+
+            print(twitter_profile)
+            print(twitter_follow_count)
 
             return li_eles
 
