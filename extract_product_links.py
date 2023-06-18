@@ -81,9 +81,11 @@ class Task(BaseTask):
             except AttributeError:
                 rating = ""
 
-            print(website)
-            print(rate_count)
-            print(rating)
+            vendor_name = details["Seller"]
+
+
+            print(vendor_name)
+            print(details)
 
             return li_eles
 
