@@ -163,7 +163,7 @@ class Task(BaseTask):
                 vendor_name = ""
             
             if "LinkedIn Page" in details:
-                if len(details["LinkedIn Page"].split("||")) > 0:
+                if len(details["LinkedIn Page"].split("||")) > 1:
                     linkedin_profile = details["LinkedIn Page"].split("||")[0]
                     linkedin_follow_count = details["LinkedIn Page"].split("||")[1].split(" ")[0].split(".com")[1]
                 else:
@@ -179,7 +179,7 @@ class Task(BaseTask):
                 hq_location = ""
 
             if "Twitter" in details:
-                if len(details["Twitter"].split(" ")) > 0:
+                if len(details["Twitter"].split(" ")) > 1:
                     twitter_profile = details["Twitter"].split(" ")[0]
                     twitter_follow_count = details["Twitter"].split(" ")[1]
                 else:
