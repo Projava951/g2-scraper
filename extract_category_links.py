@@ -53,14 +53,17 @@ class Task(BaseTask):
 
         def get_page_count():
             el = driver.get_element_or_none_by_selector('#product-list  ul  li:last-child > a.pagination__named-link.js-log-click', Wait.SHORT)
-            url = el.get_attribute("href")
+            try: 
+                url = el.get_attribute("href")
             
-            url_parts = urlparse(url)
-            query_params = parse_qs(url_parts.query)
+                url_parts = urlparse(url)
+                query_params = parse_qs(url_parts.query)
 
-            # Extract the 'page' parameter from the query parameters
-            page_number = query_params.get('page', [])[0]
-
+                # Extract the 'page' parameter from the query parameters
+                page_number = query_params.get('page', [])[0]
+            except AttributeError:
+                page_number = "1"
+                
             return int(page_number)
 
         def put_links():
