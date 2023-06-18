@@ -141,9 +141,20 @@ class Task(BaseTask):
                 except AttributeError:
                     high_rated_features_3 = ""
 
-            print(high_rated_features_1)
-            print(high_rated_features_2)
-            print(high_rated_features_3)
+            user_rating_div = html.select_one('div[data-equalizer$="measure-title"]')
+            if user_rating_div == None:
+                ease_of_use = ""
+                quality_of_support = ""
+                ease_of_setup = ""
+            else:
+                user_rating_div_children = user_rating_div.find_all("div", class_="center-center")
+                ease_of_use = user_rating_div_children[0].text
+                quality_of_support = user_rating_div_children[1].text
+                ease_of_setup = user_rating_div_children[2].text
+
+            print(ease_of_use)
+            print(quality_of_support)
+            print(ease_of_setup)
 
             return li_eles
 
