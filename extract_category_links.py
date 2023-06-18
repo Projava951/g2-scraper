@@ -144,17 +144,18 @@ class Task(BaseTask):
                 website = ""
 
             review_div = html.select_one('div[id$="reviews"]')
-            rate_count_h3 = review_div.find_all("h3")[0]
 
             try: 
+                rate_count_h3 = review_div.find_all("h3")[0]
                 rate_count = rate_count_h3.text.split(" ")[0]
-            except AttributeError:
+            except IndexError:
                 rate_count = ""
 
-            rating_span = review_div.find_all("span", class_="fw-semibold")[0]        
+                  
             try: 
+                rating_span = review_div.find_all("span", class_="fw-semibold")[0]  
                 rating = rating_span.text.strip()
-            except AttributeError:
+            except IndexError:
                 rating = ""
 
             if "Seller" in details:
