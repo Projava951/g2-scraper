@@ -97,14 +97,17 @@ class Task(BaseTask):
 
             try: 
                 ol_ele = html.select_one('ol[id$="breadcrumbs"]')
-                li_eles = ol_ele.find_all("li", itemprop = 'itemListElement')
-                all_categories = ""
-                for i in range(len(li_eles)):
-                    if (i > 0 and i < len(li_eles) - 1):
-                        if (i == len(li_eles) - 2):
-                            all_categories += li_eles[i].select_one('span[itemprop$="name"]').text
-                        else:
-                            all_categories += li_eles[i].select_one('span[itemprop$="name"]').text + ' | '
+                if ol_ele == None:
+                    all_categories = ""
+                else:
+                    li_eles = ol_ele.find_all("li", itemprop = 'itemListElement')
+                    all_categories = ""
+                    for i in range(len(li_eles)):
+                        if (i > 0 and i < len(li_eles) - 1):
+                            if (i == len(li_eles) - 2):
+                                all_categories += li_eles[i].select_one('span[itemprop$="name"]').text
+                            else:
+                                all_categories += li_eles[i].select_one('span[itemprop$="name"]').text + ' | '
             except IndexError:
                 all_categories = ""
             
