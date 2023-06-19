@@ -116,7 +116,7 @@ class Task(BaseTask):
             title_div = html.select_one('div[class$="product-head__title"]')
             try: 
                 title = title_div.select_one('div[itemprop$="name"]').select_one('a').text
-            except IndexError:
+            except AttributeError:
                 title = ""
             
 
