@@ -114,7 +114,11 @@ class Task(BaseTask):
 
             company_link = company_url
             title_div = html.select_one('div[class$="product-head__title"]')
-            title = title_div.select_one('div[itemprop$="name"]').select_one('a').text
+            try: 
+                title = title_div.select_one('div[itemprop$="name"]').select_one('a').text
+            except IndexError:
+                title = ""
+            
 
             details_list = html.find_all("div", class_ = 'ml-1')
 
