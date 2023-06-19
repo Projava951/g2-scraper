@@ -249,42 +249,51 @@ class Task(BaseTask):
             html = htmltosoup(driver.page_source)
 
             features_summary_div = html.select_one('div[class$="paper paper--box"]')
-            features_h3s = features_summary_div.find_all("h3")
-            features_uls = features_summary_div.find_all("ul", class_="list--checked")
+            if features_summary_div != None:
+                features_h3s = features_summary_div.find_all("h3")
+                features_uls = features_summary_div.find_all("ul", class_="list--checked")
 
-            try: 
-                feature_1 = features_h3s[0].text + " > " + features_uls[0].find_all("li")[0].text
-            except IndexError:
+                try: 
+                    feature_1 = features_h3s[0].text + " > " + features_uls[0].find_all("li")[0].text
+                except IndexError:
+                    feature_1 = ""
+
+                try: 
+                    feature_2 = features_h3s[1].text + " > " + features_uls[1].find_all("li")[0].text
+                except IndexError:
+                    feature_2 = ""
+
+                try: 
+                    feature_3 = features_h3s[2].text + " > " + features_uls[2].find_all("li")[0].text
+                except IndexError:
+                    feature_3 = ""
+
+                try: 
+                    feature_4 = features_h3s[3].text + " > " + features_uls[3].find_all("li")[0].text
+                except IndexError:
+                    feature_4 = ""
+
+                try: 
+                    feature_5 = features_h3s[4].text + " > " + features_uls[4].find_all("li")[0].text
+                except IndexError:
+                    feature_5 = ""
+
+                try: 
+                    feature_6 = features_h3s[5].text + " > " + features_uls[5].find_all("li")[0].text
+                except IndexError:
+                    feature_6 = ""
+
+                try: 
+                    feature_7 = features_h3s[6].text + " > " + features_uls[6].find_all("li")[0].text
+                except IndexError:
+                    feature_7 = ""
+            else:
                 feature_1 = ""
-
-            try: 
-                feature_2 = features_h3s[1].text + " > " + features_uls[1].find_all("li")[0].text
-            except IndexError:
                 feature_2 = ""
-
-            try: 
-                feature_3 = features_h3s[2].text + " > " + features_uls[2].find_all("li")[0].text
-            except IndexError:
                 feature_3 = ""
-
-            try: 
-                feature_4 = features_h3s[3].text + " > " + features_uls[3].find_all("li")[0].text
-            except IndexError:
                 feature_4 = ""
-
-            try: 
-                feature_5 = features_h3s[4].text + " > " + features_uls[4].find_all("li")[0].text
-            except IndexError:
                 feature_5 = ""
-
-            try: 
-                feature_6 = features_h3s[5].text + " > " + features_uls[5].find_all("li")[0].text
-            except IndexError:
                 feature_6 = ""
-
-            try: 
-                feature_7 = features_h3s[6].text + " > " + features_uls[6].find_all("li")[0].text
-            except IndexError:
                 feature_7 = ""
 
             details = {
